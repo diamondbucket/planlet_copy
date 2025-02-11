@@ -6,7 +6,10 @@ import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import FirstPage from "./pages/FirstPage";
 import NewProject from "./pages/SecondPage";
 import CalendarLayout from "./components/CalenderLayout";
-import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
+// import ProfilePage from "./pages/ProfilePage";  // Updated import path
+// import NotesPage from "./pages/NotesPage";      // Updated import path
+import ProtectedRoute from "./components/ProtectedRoute";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 const App = () => {
   return (
@@ -16,8 +19,7 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-
-        {/* Protect these routes */}
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route
           path="/info"
           element={<ProtectedRoute element={<NewProject />} />}
@@ -26,6 +28,14 @@ const App = () => {
           path="/calendar"
           element={<ProtectedRoute element={<CalendarLayout />} />}
         />
+        {/* <Route
+          path="/profile"
+          element={<ProtectedRoute element={<ProfilePage />} />}
+        /> */}
+        {/* <Route
+          path="/notes"
+          element={<ProtectedRoute element={<NotesPage />} />}
+        /> */}
       </Routes>
     </Router>
   );

@@ -1,83 +1,224 @@
 import React from "react";
-import TrafficLight from "../assets/traffic_light.png";
-import Pigeon from "../assets/pigeon.png";
+import Kaka_enhanced from "../assets/Kaka_enhanced.svg";
+import Road from "../assets/Road.svg";
+import Road_right from "../assets/Road_right.svg";
+import Left_flower from "../assets/Flower.png";
+import Right_flower from "../assets/Flower.png";
+import Left_cloud from "../assets/Left_cloud.svg";
+import Center_cloud from "../assets/Center_cloud.svg";
+import Right_cloud from "../assets/Center_cloud.svg";
+import Girly_chan from "../assets/Girly_chan.svg";
+import Signal from "../assets/Signal.svg";
+import Planet from "../assets/Planet3.svg";
+import Eyes from "../assets/eyes.png";
+import { useNavigate } from "react-router-dom";
 
-const FirstPage = () => {
+const FrontPage = () => {
+  const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#42e3ff] flex flex-col items-center justify-center relative overflow-hidden">
-      {/* Top Navigation */}
+    <div className="w-full min-h-screen h-screen bg-[#3bf8ff] flex flex-col items-center justify-center relative overflow-hidden">
+      {/* Signal - Mobile specific changes */}
+      <div
+        className="absolute 
+        sm:w-[25vw] sm:left-[-5vw] sm:top-[-14vh] sm:max-w-[450px]
+        w-[45vw] left-[-8vw] top-[-2vh] min-w-[200px] z-20 sm:z-0"
+      >
+        <img
+          src={Signal}
+          alt="Signal"
+          className="w-full h-auto object-contain transform scale-150 sm:scale-100"
+        />
+      </div>
 
-      {/* Hero Section */}
-      <main className="text-center px-6 sm:px-12">
-        <h1 className="text-6xl sm:text-8xl font-funky text-black mb-4 tracking-wide">
-          planlet
-          <span className="inline-block rotate-12 text-yellow-400">★</span>
-        </h1>
-        <p className="text-lg sm:text-xl text-black mb-8">
+      {/* Main Logo */}
+      <div
+        className="absolute 
+          w-4/5 
+          h-auto 
+          sm:top-[6vh] 
+          top-[15vh] 
+          left-1/2 
+          -translate-x-1/2 
+          flex 
+          items-center 
+          justify-center 
+          z-10"
+        id="main-logo-container"
+      >
+        <img src={Planet} className="w-full max-w-2xl mx-auto" alt="Planet Logo" />
+      </div>
+
+      {/* Desktop Text - Hidden on mobile */}
+      <div
+        className="absolute 
+        hidden sm:block      /* Only visible on desktop */
+        w-4/5
+        top-[45vh]
+        left-1/2 
+        -translate-x-1/2 
+        text-center 
+        z-10
+      "
+      >
+        <p
+          className="
+          text-black
+          font-bold
+          text-center
+          sm:text-base
+          md:text-lg 
+          lg:text-xl 
+        "
+        >
           Plan. Create. Post. Simplify Your Content Strategy.
         </p>
+      </div>
 
-        {/* Generate Button */}
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-2xl px-6 py-3 rounded-md transition-all duration-300 shadow-lg">
-          GENERATE
-        </button>
-      </main>
+      {/* Mobile Text - Hidden on desktop */}
+      <div
+        className="absolute 
+        sm:hidden            /* Only visible on mobile */
+        w-4/5
+        top-[30vh]
+        left-1/2 
+        -translate-x-1/2 
+        text-center 
+        z-10
+      "
+      >
+        <p
+          className="
+          text-black
+          font-black
+          text-center
+          text-sm
+          mt-8
+          leading-relaxed
+        "
+        >
+          Plan. Create. Post.
+          <br />
+          Simplify Your Content Strategy.
+        </p>
+      </div>
 
-      {/* Bottom Decorative Elements */}
-      <div>
-        {/* Traffic Light */}
+      {/* Right road Illustration */}
+      <div
+        className="hidden sm:block absolute right-[-10%] top-0 w-[600px] sm:w-[50vw] lg:w-[600px] min-w-[200px] h-screen"
+        id="right-illustration-container"
+      >
         <img
-          src={TrafficLight}
-          alt="Traffic Light"
-          className="absolute"
-          style={{
-            width: "632px",
-            height: "561px",
-            top: "-174px",
-            left: "-108px",
-          }}
+          src={Road_right}
+          alt="Road Illustration"
+          className="w-full h-full object-cover origin-top-right scale-125"
         />
+      </div>
 
-        {/* Pigeon */}
+      {/* Left road Illustration */}
+      <div className="hidden sm:block absolute left-[-10%] bottom-0 w-[600px] sm:w-[50vw] lg:w-[600px] min-w-[200px] h-[70vh]">
         <img
-          src={Pigeon}
-          alt="Pigeon"
-          className="absolute"
-          style={{
-            width: "381px",
-            height: "411px",
-            top: "256px",
-            left: "74px",
-          }}
+          src={Road}
+          alt="Road Illustration"
+          className="w-full h-full object-cover origin-bottom-left scale-125"
         />
+      </div>
 
-        {/* Left Illustration */}
+      <div className="absolute inset-0">
+        {/* Kaka Image */}
+        <div className="absolute sm:top-[30vh] top-[40vh] left-[5vw] w-[25vw] min-w-[200px] max-w-[400px] z-0">
+          <img
+            src={Kaka_enhanced}
+            alt="Kaka Element"
+            className="w-full h-auto object-contain"
+          />
+        </div>
+
+        {/* Generate Button - Updated with eyes.png and overlay text */}
+        <div className="absolute sm:top-[60vh] top-[70vh] left-1/2 -translate-x-1/2 w-auto">
+          <button
+            className="
+              relative
+              flex 
+              items-center 
+              justify-center 
+              px-4 py-2 
+              md:px-6 md:py-3 
+              bg-transparent 
+              rounded-full 
+              shadow-lg 
+              overflow-hidden 
+              group 
+              cursor-pointer 
+              transition-transform 
+              transform 
+              hover:scale-105
+            "
+            onClick={() => navigate("/login")}
+          >
+            {/* Eyes Image */}
+            <img
+              src={Eyes}
+              alt="Generate"
+              className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-80 transition-opacity duration-300"
+            />
+            
+            {/* Overlay Text */}
+            <span className="relative text-white font-semibold text-lg sm:text-sm md:text-xl">
+              GENERATE
+            </span>
+          </button>
+        </div>
+
+        {/* Girl Image */}
+        <div className="absolute sm:top-[30vh] top-[40vh] right-[-1vw] w-[30vw] min-w-[250px] max-w-[500px]">
+          <img
+            src={Girly_chan}
+            alt="Girl"
+            className="w-full h-auto object-contain"
+          />
+        </div>
+      </div>
+
+      {/* Clouds - Arranged in a row */}
+      <div className="absolute bottom-[-1vh] left-[-1vw] w-[40vw] min-w-[200px] max-w-[368px]">
         <img
-          src="https://via.placeholder.com/200" // Replace with actual asset
-          alt="Bird Illustration"
-          className="absolute bottom-10 left-0 w-32 sm:w-48"
+          src={Left_cloud}
+          alt="Left Cloud Illustration"
+          className="w-full h-auto object-contain"
         />
+      </div>
 
-        {/* Right Illustration */}
+      <div className="absolute bottom-[-2vh] left-[45%] -translate-x-1/2 w-[50vw] min-w-[300px] sm:min-w-[400px] max-w-[811px]">
         <img
-          src="https://via.placeholder.com/200" // Replace with actual asset
-          alt="Girl Illustration"
-          className="absolute bottom-10 right-0 w-32 sm:w-48"
+          src={Center_cloud}
+          alt="Center Cloud Illustration"
+          className="w-full h-auto object-contain"
         />
+      </div>
 
-        {/* CCTV Camera */}
+      <div className="absolute bottom-[-2vh] right-[-8vw] w-[50vw] min-w-[300px] max-w-[811px]">
         <img
-          src="https://via.placeholder.com/150" // Replace with actual asset
-          alt="CCTV Camera"
-          className="absolute top-16 right-4 w-20 sm:w-28"
+          src={Right_cloud}
+          alt="Right Cloud Illustration"
+          className="w-full h-auto object-contain"
         />
+      </div>
 
-        {/* Decorative Flowers */}
-        <div className="absolute bottom-0 left-0 w-32 sm:w-48">🌸</div>
-        <div className="absolute bottom-0 right-0 w-32 sm:w-48">🌼</div>
+      {/* Flowers */}
+      <div className="absolute bottom-[0] left-[-4vw] w-[20vw] min-w-[150px] max-w-[300px]">
+        <img src={Left_flower} className="w-full h-auto object-contain" alt="Left Flower" />
+      </div>
+
+      {/* Right Flower - Moved to bottom right corner */}
+      <div className="absolute bottom-[-2vh] right-[-2vw] w-[20vw] min-w-[150px] max-w-[300px]">
+        <img
+          src={Right_flower}
+          alt="Right Flower Illustration"
+          className="w-full h-auto object-contain"
+        />
       </div>
     </div>
   );
 };
 
-export default FirstPage;
+export default FrontPage;

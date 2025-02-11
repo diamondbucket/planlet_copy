@@ -1,12 +1,10 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import FrontPage from './pages/FirstPage'
-import './index.css'
-import NewProject from './pages/SecondPage'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <FrontPage />
-    <NewProject />
-  </React.StrictMode>,
-)
+    <App />
+  </React.StrictMode>
+);

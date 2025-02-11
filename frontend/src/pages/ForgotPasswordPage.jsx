@@ -4,14 +4,23 @@ import AuthLayout from "../components/AuthLayout";
 import AuthForm from "../components/AuthForm";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
+import { forgotPassword } from "../utils/api"; // Update your API utility
 
 const ForgotPasswordPage = () => {
   const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleResetRequest = () => {
-    console.log("Reset password for:", email);
-    // Add password reset logic here
+  const handleResetRequest = async () => {
+    try {
+      const response = await forgotPassword(email);
+      setMessage(response.message);
+      setError("");
+    } catch (err) {
+      setError(err.response?.data?.message || "An error occurred.");
+      setMessage("");
+    }
   };
 
   return (
@@ -28,6 +37,8 @@ const ForgotPasswordPage = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {message && <p className="text-green-500 text-sm">{message}</p>}
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         <Button onClick={handleResetRequest}>Send Reset Link</Button>
         <div className="mt-4 text-center">
           <button

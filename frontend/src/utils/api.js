@@ -8,6 +8,17 @@ const api = axios.create({
   },
 });
 
+// Add request interceptor to include token
+api.interceptors.request.use(config => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, error => {
+  return Promise.reject(error);
+});
+
 // Sign-up function
 export const register = async (name, email, password) => {
   try {
@@ -26,25 +37,39 @@ export const register = async (name, email, password) => {
 export const login = async (email, password) => {
   try {
     const response = await api.post("/auth/login", { email, password });
+    localStorage.setItem("token", response.data.token);
     return response.data; // Returns token and user info
   } catch (error) {
     throw error.response?.data?.message || "Server error";
   }
 };
 
-// Save business info function
-export const saveBusinessInfo = async (businessData, token) => {
+export const forgotPassword = async (email) => {
   try {
-    
-    const response = await api.post(
-      "/save-business-info", // The route in productRoutes
-      businessData,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`, // Attach the token for authentication
-        },
-      }
-    );
+    const response = await api.post("/auth/forgot-password", { email });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Error sending reset email";
+  }
+};
+
+export const resetPassword = async (email, token, newPassword) => {
+  try {
+    const response = await api.post("/auth/reset-password", {
+      email,
+      token,
+      newPassword
+    });
+    return response.data;
+  } catch (error) {
+    throw error.response?.data?.message || "Error resetting password";
+  }
+};
+
+// Save business info function
+export const saveBusinessInfo = async (businessData) => {
+  try {
+    const response = await api.post("/save-business-info", businessData);
     return response.data;
   } catch (error) {
     throw error.response?.data?.message || "Error saving business info";
